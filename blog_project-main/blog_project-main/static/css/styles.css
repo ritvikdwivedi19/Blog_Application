@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+nav a {
+    margin-right: 15px;
+}
+
+form {
+    display: flex;
+}
+
+form input {
+    margin-right: 5px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        margin-bottom: 10px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form input {
+        margin-bottom: 10px;
+    }
+}

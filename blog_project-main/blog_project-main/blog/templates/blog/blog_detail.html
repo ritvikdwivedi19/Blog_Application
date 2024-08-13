@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ blog.title }}</h2>
+<p>{{ blog.content }}</p>
+<p>Tags: 
+    {% for tag in blog.tags.all %}
+        <a href="{% url 'tag_view' tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+<h3>Comments</h3>
+<ul>
+    {% for comment in comments %}
+        <li>
+            <p>{{ comment.content }}</p>
+            <p>By {{ comment.author }} on {{ comment.created_at }}</p>
+            <p>Likes: {{ comment.likes.count }}</p>
+            <form action="{% url 'like_comment' comment.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Like</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+<h3>Leave a Comment</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Post Comment</button>
+</form>
+<a href="{% url 'share_blog' blog.pk %}">Share this blog via email</a>
+{% endblock %}
